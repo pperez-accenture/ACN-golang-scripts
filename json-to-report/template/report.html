@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Weblogic Domain Report Status: Report Created with Json Report script">
+		<meta name="keywords" content="Json, Weblogic, Report">
+		<meta name="author" content="Patricio Pérez">
+		<title>Weblogic Server Status - {{.GenDate}}</title>
+		<style>
+		.chp-report 
+		{
+			padding:25px 25px 15px;
+		}
+		.chp-report .chp-box
+		{
+			margin: 10px;
+		}
+		.chp-report footer
+		{
+			text-align: center;
+		}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	</head>
+	<body class="bg-light">
+		<div class="container container-fluid chp-report col-xs-12">
+			<header class="jumbotron p-3 p-md-5">
+				<h1>Weblogic Domain Report Status</h1>
+			</header>
+			<section class="row">
+			<article class="col-sm-12">
+			<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+			  <thead>
+				<tr>
+				  <th class="th-sm">Domain
+					<i class="fa fa-sort float-right" aria-hidden="true"></i>
+				  </th>
+				  <th class="th-sm">Server
+					<i class="fa fa-sort float-right" aria-hidden="true"></i>
+				  </th>
+				  <th class="th-sm">Path
+					<i class="fa fa-sort float-right" aria-hidden="true"></i>
+				  </th>
+				  <th class="th-sm">Default URL
+					<i class="fa fa-sort float-right" aria-hidden="true"></i>
+				  </th>
+				  <th class="th-sm">State
+					<i class="fa fa-sort float-right" aria-hidden="true"></i>
+				  </th>
+				</tr>
+			  </thead>
+			  <tbody>{{range .WLDomainStatus}}{{$domainData := . }}{{range .Servers}}
+				<tr>
+				  <td>{{$domainData.Domain}}</td>
+				  <td>{{.Name}}</td>
+				  <td>{{.ServerPath}}</td>
+				  <td>{{.DefaultURL}}</td>
+				  <td class="state">{{.State}}</td>
+				</tr>{{end}}{{else}}					
+				<tr>
+				  <td colspan="6">No data to show. Check Jenkins Job log to see info, or contact to ACN Team.</td>
+				</tr>{{end}}
+			  </tbody>
+			  <tfoot>
+				<tr>
+				  <th>Domain</i>
+				  </th>
+				  <th>Server</i>
+				  </th>
+				  <th>Path</i>
+				  </th>
+				  <th>Default URL</i>
+				  </th>
+				  <th>State</i>
+				  </th>
+				</tr>
+			  </tfoot>
+			</table>
+			</article>
+			</section>
+			<footer class="card-footer text-muted bg-transparent border-success mx-auto"  style="width: 80%;">
+				<p>This page was generated using the Json Report script, by LATAM ACN AO Team, on {{.GenDate}}</p>
+			</footer>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+		<script>
+			//Paint the cell color
+			function setBgColor(row, data, index){
+				$.each(data, function(i, val){
+					var cell = $('td:eq('+i+')', row);
+					if(cell.hasClass("state")){
+						switch(val){
+							case "RUNNING":
+								cell.addClass("bg-success");
+								break;
+							case "SHUTDOWN":
+								cell.addClass("bg-danger");
+								break;
+						}
+					}
+				});
+			}
+			
+			$(document).ready(function(){
+				$('#dtBasicExample').DataTable({
+					"pageLength": 50,
+					'rowCallback': setBgColor
+				});
+				$('.dataTables_length').addClass('bs-select');
+			});
+		</script>
+	</body>
+</html>
+

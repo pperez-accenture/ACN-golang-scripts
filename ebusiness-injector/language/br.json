@@ -1,0 +1,21 @@
+{
+  "language": "br",
+  "sheetData": "DADOS DO USUÁRIO",
+  "header": {
+    "type": "AÇÃO",
+    "email": "EMAIL DO USUÁRIO",
+    "firstName": "NOME DO USUÁRIO",
+    "lastName": "SOBRENOME DO USUÁRIO",
+    "businessName": "RAZAO SOCIAL",
+    "businessId": "CNPJ",
+    "businessAccount": "CTA CORRENTE",
+    "personCode": "AD_PESSOA",
+    "chargeCode": "CÓD CARGA",
+    "agentOrigin": "BASE ORIGEM",
+    "functionality": "FUNCIONALIDADE"
+  },
+  "type": {
+	"create": "NOVO ACESSO",
+	"update": "INCLUSÃO/ALTERAÇÃO DE USUÁRIO JÁ EXISTENTE"
+  }
+}

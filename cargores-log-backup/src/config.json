@@ -1,0 +1,52 @@
+{
+    "log-environments": {
+      "booking": {
+        "servers": [
+          {
+            "host": "",
+            "user": "",
+            "pass": "",
+            "save-in": "",
+            "paths": [
+              "",
+              ""
+            ]
+          }
+        ]
+      },
+      "cargores": {
+        "servers": [
+          {
+            "host": "",
+            "user": "",
+            "pass": "",
+            "save-in": "",
+            "paths": [
+              "",
+              ""
+            ]
+          }
+        ]
+      },
+      "cargoprice": {
+        "servers": [
+          {
+            "host": "",
+            "user": "",
+            "pass": "",
+            "save-in": "",
+            "paths": [
+              "",
+              ""
+            ]
+          }
+        ]
+      }
+    },
+    "config": {
+      "MaxAttempts":  10,
+          "IntervalTime": 0.5,
+          "LogFolder":    "log/",
+          "ZippedFolder": "./build"
+    }
+  }

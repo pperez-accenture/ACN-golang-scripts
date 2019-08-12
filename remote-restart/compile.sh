@@ -1,0 +1,1 @@
+env GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o "bin/RestartNow.exe" src/remote_restart.go

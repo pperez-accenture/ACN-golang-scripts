@@ -1,0 +1,66 @@
+{
+  "LDAP": {
+    "server": {
+		"ip":"192.168.0.1",
+		"user":"user",
+		"pass":"pass"
+	},
+	"port": 389,
+    "domain": "dc=com",
+    "user": "dc=com",
+    "password": "pwd",
+    "organization": "",
+    "validations": {
+      "user": {
+        "isInLdap": true,
+        "isInMAC": true,
+        "hasMCMPermissions": true
+      },
+      "group": {
+        "isInLdap": true
+      }
+    },
+    "organizationalUnit": [
+	  {
+        "ou": "internet",
+        "organizationalUnit": [
+		  {
+            "ou": "aplications",
+            "organizationalUnit": [
+			  {
+                "ou": "hello",
+                "commonNames": [
+                  "hello_world"
+                ]
+			  }
+            ]
+		  }
+        ]
+	  }
+    ],
+	"memberUnit": [
+	  {
+        "ou": "internet",
+        "organizationalUnit": [
+		  {
+            "ou": "users"
+		  }
+        ]
+	  }
+    ]
+  },
+  "database": {
+	"server": "localhost",
+	"port": "5555",
+	"sid": "db",
+	"user": "user",
+	"password": "pass",
+	"tables": {
+		"example": {
+		  "owner": "USER",
+		  "name": "TABLE"
+		}
+	}
+  }
+}
+
